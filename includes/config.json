@@ -1,0 +1,6 @@
+{
+  "branch": "develop",
+  "file_name": "CHANGELOG.md",
+  "file_placeholder": "[unreleased]",
+  "exclude_messages": "merge tag"
+}
