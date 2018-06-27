@@ -1,0 +1,46 @@
+{
+    "attachments": [
+        {
+            "fallback": "Success",
+            "color": "good",
+            "author_icon": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-11/50082851622_ea1ea9269c3c8df6097b_132.jpg",
+            "title": "Success :boom:",
+            "fields": [
+                {
+                    "title": "Branch",
+                    "mrkdwn": true,
+                    "value": "",
+                    "short": true
+                },
+                {
+                    "title": "Deployer",
+                    "mrkdwn": true,
+                    "value": "",
+                    "short": true
+                },
+                {
+                    "title": "",
+                    "mrkdwn": true,
+                    "value": "",
+                    "short": true
+                }
+            ],
+            "actions": [
+                {
+                    "type": "button",
+                    "text": "View report",
+                    "url": "",
+                    "style": "primary"
+                },
+                {
+                    "type": "button",
+                    "text": "Download",
+                    "url": "",
+                    "style": "primary"
+                }
+            ],
+            "footer": "NV3 CI",
+            "footer_icon": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-11/50082851622_ea1ea9269c3c8df6097b_132.jpg"
+        }
+    ]
+}

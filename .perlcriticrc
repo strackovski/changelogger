@@ -1,0 +1,21 @@
+##############################################################################
+# Perl::Critic configuration file.
+# NV3 Default Profile
+##############################################################################
+exclude = Documentation
+include = CodeLayout Modules
+force = 1
+only = 1
+severity = 1
+theme = danger + risky - pbp
+top = 50
+verbose = 1
+color-severity-highest = bold red underline
+color-severity-high = bold magenta
+color-severity-medium = blue
+color-severity-low =
+color-severity-lowest =
+program-extensions =
+
+[CodeLayout::RequireTidyCode]
+perltidyrc = .perltidyrc

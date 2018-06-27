@@ -1,0 +1,36 @@
+{
+    "attachments": [
+        {
+            "fallback": "ChangeLogger",
+            "color": "danger",
+            "author_icon": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-11/50082851622_ea1ea9269c3c8df6097b_132.jpg",
+            "title": "ChangeLogger :boom:",
+            "fields": [
+                {
+                    "title": "Deployer",
+                    "value": "",
+                    "short": true
+                },
+                {
+                    "title": "Code",
+                    "value": "",
+                    "short": true
+                }
+            ],
+            "actions": [
+                {
+                    "type": "button",
+                    "text": "View report",
+                    "url": "https://ci.nv3.org/projects/changelogger/builds/12345/action/acknowledge",
+                    "style": "primary"
+                },
+                {
+                    "type": "button",
+                    "text": "Restart",
+                    "url": "https://ci.nv3.org/projects/changelogger/builds/12345/action/restart",
+                    "style": "danger"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+/.idea
+/bin/*
+!/bin/.gitkeep
+/build/
+/vendor/
+/web/bundles/netbeans/*
+/var/logs/*
+!/var/logs/.gitkeep
+/nbproject
+.DS_Store

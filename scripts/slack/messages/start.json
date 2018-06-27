@@ -1,0 +1,12 @@
+{
+    "attachments": [
+        {
+            "fallback": "ChangeLogger",
+            "color": "#3AA3E3",
+            "author_icon": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-11/50082851622_ea1ea9269c3c8df6097b_132.jpg",
+            "title": "ChangeLogger :boom:",
+            "text": "",
+            "mrkdwn_in": ["pretext", "text", "fields"]
+        }
+    ]
+}
