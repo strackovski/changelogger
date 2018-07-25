@@ -42,7 +42,7 @@ build () {
     fi
 
     if [ "${MACHINE_OS}" == 'Linux' ]; then
-        cd "$PWD" && md5sum -q bin/clogger > bin/clogger.checksum
+        cd "$PWD" && md5sum bin/clogger > bin/clogger.checksum
     else
         cd "$PWD" && md5 -q bin/clogger > bin/clogger.checksum
     fi

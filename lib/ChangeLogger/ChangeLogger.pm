@@ -16,10 +16,11 @@ use ChangeLogger::Tools;
 use ChangeLogger::Printer;
 use Par::Packer;
 use Readonly;
+use Data::Dumper;
 
 our $VERSION                     = "0.1.0";
 our @SUPPORTED_RELEASE_TYPES     = qw( minor major patch hotfix );
-our @SUPPORTED_CHANGE_STRATEGIES = qw( tag commit );
+our @SUPPORTED_CHANGE_STRATEGIES = qw( tag commit auto );
 our %releaseTypes                = map { $_ => 1 } @SUPPORTED_RELEASE_TYPES;
 our %strategies                  = map { $_ => 1 } @SUPPORTED_CHANGE_STRATEGIES;
 
@@ -72,12 +73,24 @@ sub execute() {
         $self->{version} = Tools::question( 'Next version/tag', $self->incrementSemVer );
         @commits = $self->getCommitsSinceLastTag();
     }
+    elsif ( $self->{strategy} eq 'auto' ) {
+        @commits = $self->getCommitsSinceLastTag();
+        $self->{version} = $self->incrementSemVer;
+    }
     elsif ( $self->{strategy} eq 'commit' ) {
         my $hash = Tools::question('Commit hash');
         $self->{version} = Tools::question('Next version/tag');
         @commits = $self->getCommitsSinceCommitHash($hash);
     }
-    $self->{release_date} = Tools::question( "Release date", $self->{release_date} );
+
+    if ( !@commits ) {
+        return 0;
+    }
+
+    if ( $self->{strategy} ne 'auto' ) {
+        $self->{release_date} = Tools::question( "Release date", $self->{release_date} );
+    }
+
     $self->write(@commits);
     $self->printer->info("Changelog updated in $self->{repository_dir}/$self->{config}{file_name}.");
 }
@@ -85,12 +98,15 @@ sub execute() {
 sub readConfig() {
     my ($self) = @_;
 
-    if ( !-d $self->{repository_dir} . '/changelogger.json' ) {
-        $self->{config} = decode_json( PAR::read_file('config.json') );
-    }
-    else {
-        $self->{config} = decode_json( Tools::read_file( $self->{repository_dir} . '/changelogger.json' ) );
-    }
+    $self->{config} = decode_json( Tools::read_file('changelogger.json') );
+    #
+    # if ( !-d $self->{repository_dir} . '/changelogger.json' ) {
+    #     $self->{config} = decode_json( PAR::read_file('config.json') );
+    # }
+    # else {
+    #     # $self->{config} = decode_json( Tools::read_file( $self->{repository_dir} . '/changelogger.json' ) );
+    #     $self->{config} = decode_json( Tools::read_file( 'changelogger.json' ) );
+    # }
 }
 
 sub validate() {
@@ -149,10 +165,18 @@ sub cleanCommitMessages() {
 
     foreach my $line (@commits) {
         if ( index( lc $line, lc $self->{config}{exclude_messages} ) == -1 ) {
+
+            # $line = substr $line, 8;
+            # if( $line =~ /(([A-Z])\w+-([0-9])\d+)/i ) {
+            #     my $replace = ' ';
+            #     my $replacement = ' -> ';
+            #
+            #     $line =~ s/$replace/$replacement/;
+            # }
+
             push @output, $line;
         }
     }
-
     return @output;
 }
 

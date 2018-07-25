@@ -72,7 +72,7 @@ fi
 printf '➜  Verifying downloaded file integrity...';
 
 if [ ${MACHINE_OS} == 'Linux' ]; then
-    FILE_CHECKSUM_MD5=$(md5sum -q clogger);
+    FILE_CHECKSUM_MD5=$(md5sum clogger);
 else
     FILE_CHECKSUM_MD5=$(md5 -q clogger);
 fi
